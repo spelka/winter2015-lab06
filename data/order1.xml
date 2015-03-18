@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE order SYSTEM 'bonanza.dtd'>
+
+<order type="eatin">
+	<customer>Jim</customer>
+	<burger>
+		<patty type="beef"/>
+		<cheeses top="gruyere"/>
+		<topping type="shrooms"/>
+		<sauce type="ketchup"/>
+		<sauce type="mayo"/>
+	</burger>
+</order>
