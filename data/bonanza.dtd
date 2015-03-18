@@ -1,0 +1,60 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+
+<!-- An order identifies the customer, order type, burgers, and special info -->
+<!ELEMENT order (customer, delivery?, burger+, special?)>
+
+<!-- A customer is identified by their name -->
+<!ELEMENT customer (#PCDATA)>
+
+<!-- An order can be for eat-in, takeout, or delivery ... customer-specified -->
+<!ATTLIST order
+	type ( eatin | takeout | delivery ) #REQUIRED
+>
+
+<!-- An order to be delivered will need delivery instructions -->
+<!ELEMENT delivery (#PCDATA)>
+
+<!-- Provides special instructions -->
+<!ELEMENT special (#PCDATA)>
+
+<!-- Specifies individual burgers
+	- 1 of 5 patty types
+	- Up to two cheeses
+	- Any number of toppings
+	- Any number of sauces
+	- Special Instructions
+	- Optional name, should the customer wish to add it
+	-->
+<!ELEMENT burger (patty, cheeses?, topping*, sauce*, instructions?, name?)>
+
+
+<!-- A patty can be one of five types (assume beef), and might be named explicitly -->
+<!ELEMENT patty (#PCDATA)>
+<!ATTLIST patty
+	type	(beef|pork|turkey|bison|vege) "beef"
+>
+
+<!-- The customer can order two cheeses, assume one goes on top; the other below -->
+<!ELEMENT cheeses EMPTY>
+<!ATTLIST cheeses
+	top (american|swiss|jack|blue|gruyere|gouda|aged|goat|brie) #IMPLIED
+	bottom (american|swiss|jack|blue|gruyere|gouda|aged|goat|brie) #IMPLIED
+>
+
+<!-- There could be many toppings, so they are handled individually -->
+<!ELEMENT topping (#PCDATA)>
+<!ATTLIST topping
+	type	(lettuce|tomato|raw|dill|roasted|shrooms|salsa|bacon|chilies|fkchili|avocado|egg|porkbelly) #REQUIRED
+>
+
+<!-- sauces -->
+<!ELEMENT sauce EMPTY>
+<!ATTLIST sauce
+	type	(ketchup|mustard|mayo|fksauce) #REQUIRED
+>
+
+<!-- Instructions -->
+<!ELEMENT instructions (#PCDATA)>
+
+<!-- Customer Name -->
+<!ELEMENT name (#PCDATA)>
